@@ -4,8 +4,8 @@
 
 ## Docker swarm
 
-```wget https://path/to/frpc-compose.yml && docker stack deploy -c frpc-compose.yml frpc```
+```wget https://raw.githubusercontent.com/anyshpm/docker-frpc/main/frpc-compose.yml && docker stack deploy -c frpc-compose.yml frpc```
 
 ## Docker compose
 
-```wget https://path/to/frpc-compose.yml && docker-compose -c frpc-compose.yml up -d```
+```wget https://raw.githubusercontent.com/anyshpm/docker-frpc/main/frpc-compose.yml && docker-compose -c frpc-compose.yml up -d```

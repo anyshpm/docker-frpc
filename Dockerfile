@@ -4,6 +4,8 @@ MAINTAINER Anyshpm Chen<anyshpm@anyshpm.com>
 
 ARG FRP_VERSION
 
+ARG TARGETARCH
+
 ENV FRP_VERSION=0.38.0
 
 WORKDIR /

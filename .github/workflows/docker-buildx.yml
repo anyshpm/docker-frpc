@@ -1,0 +1,28 @@
+docker:
+  name: Publish Docker Image
+  runs-on: ubuntu-18.04
+  env:
+    REPO: ${{ secrets.ENTITY_DOMAIN_REPO }}
+
+  steps:
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+      with:
+        platforms: all
+
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@v1
+      with:
+        version: latest
+
+    -
+      name: Available platforms
+      run: echo ${{ steps.buildx.outputs.platforms }}
+      # 可以在这里看到可以兼容哪些平台
+
+    - name: Login to Docker Registry
+      run: echo '${{ secrets.DOCKERHUB_PASS }}' | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin
+
+    - name: Build Docker Image
+      run: docker buildx build -t $REPO:latest --platform linux/amd64,linux/arm64 --push .

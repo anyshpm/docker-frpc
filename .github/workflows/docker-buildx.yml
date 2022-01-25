@@ -16,10 +16,8 @@ docker:
       with:
         version: latest
 
-    -
-      name: Available platforms
+    - name: Available platforms
       run: echo ${{ steps.buildx.outputs.platforms }}
-      # 可以在这里看到可以兼容哪些平台
 
     - name: Login to Docker Registry
       run: echo '${{ secrets.DOCKERHUB_PASS }}' | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin

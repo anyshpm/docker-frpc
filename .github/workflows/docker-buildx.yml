@@ -1,10 +1,15 @@
-docker:
-  name: Publish Docker Image
-  runs-on: ubuntu-18.04
-  env:
-    REPO: ${{ secrets.ENTITY_DOMAIN_REPO }}
+name: Publish Docker Image
 
-  steps:
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
       with:
@@ -23,4 +28,4 @@ docker:
       run: echo '${{ secrets.DOCKERHUB_PASS }}' | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin
 
     - name: Build Docker Image
-      run: docker buildx build -t $REPO:latest --platform linux/amd64,linux/arm64 --push .
+      run: docker buildx build -t anyshpm/frpc:0.38.0-alpha --platform linux/amd64,linux/arm64 --push .

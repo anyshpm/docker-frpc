@@ -25,7 +25,7 @@ jobs:
       run: echo ${{ steps.buildx.outputs.platforms }}
 
     - name: Login to Docker Registry
-      run: echo '${{ secrets.DOCKERHUB_PASS }}' | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin
+      run: echo '${{ secrets.DOCKER_PASSWORD }}' | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
     - name: Build Docker Image
-      run: docker buildx build -t anyshpm/frpc:0.38.0-alpha --platform linux/amd64,linux/arm64 --push .
+      run: docker buildx build -t anyshpm/frpc:0.38.0-alpha --platform linux/amd64,linux/arm64,linux/arm  --push .

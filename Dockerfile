@@ -17,7 +17,7 @@ RUN set -x && \
     tar zxvf frp_${FRP_VERSION}_linux_${TARGETARCH}.tar.gz &&  \
     cp frp_${FRP_VERSION}_linux_${TARGETARCH}/frpc /usr/bin/ &&  \
     mkdir -p /etc/frp &&  \
-    cp frp_${FRP_VERSION}_linux_${TARGETARCH}/frpc.ini /etc/frp &&  \
+    cp frp_${FRP_VERSION}_linux_${TARGETARCH}/*.toml  /etc/frp &&  \
     rm frp_${FRP_VERSION}_linux_${TARGETARCH}.tar.gz &&  \
     rm -rf frp_${FRP_VERSION}_linux_${TARGETARCH}
 

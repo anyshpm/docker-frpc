@@ -17,8 +17,8 @@
 
 ## Build multiarch
 
-```docker buildx build --platform linux/amd64,linux/arm64 -t anyshpm/frpc:0.47.0 .```
+```docker buildx build --platform linux/amd64,linux/arm64 -t anyshpm/frpc .```
 
 ## Build local arch
 
-``` docker build -t anyshpm/frpc:0.47.0 .```
+``` docker build -t anyshpm/frpc .```

@@ -3,7 +3,7 @@ FROM alpine:3.18
 MAINTAINER Anyshpm Chen<anyshpm@anyshpm.com>
 
 ARG FRP_VERSION
-ENV FRP_VERSION=${FRP_VERSION:-0.60.0}
+ENV FRP_VERSION=${FRP_VERSION:-0.61.0}
 
 ARG TARGETARCH
 ENV TARGETARCH=${TARGETARCH:-amd64}
@@ -20,5 +20,3 @@ RUN set -x && \
     cp frp_${FRP_VERSION}_linux_${TARGETARCH}/*.toml  /etc/frp &&  \
     rm frp_${FRP_VERSION}_linux_${TARGETARCH}.tar.gz &&  \
     rm -rf frp_${FRP_VERSION}_linux_${TARGETARCH}
-
-CMD /usr/bin/frpc -c /etc/frp/frpc.ini

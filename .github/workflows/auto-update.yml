@@ -33,11 +33,13 @@ jobs:
           sed -i "s/FRP_VERSION:-${{ steps.ver.outputs.current }}/FRP_VERSION:-${{ steps.ver.outputs.latest }}/" Dockerfile
           grep FRP_VERSION Dockerfile
 
+      # PR_BOT_TOKEN (a PAT) lets the created PR trigger CI automatically.
+      # Falls back to GITHUB_TOKEN when the secret is not configured.
       - name: Create Pull Request
         if: steps.ver.outputs.latest != steps.ver.outputs.current
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PR_BOT_TOKEN || github.token }}
           commit-message: "chore: update frp to v${{ steps.ver.outputs.latest }}"
           branch: update-frp-${{ steps.ver.outputs.latest }}
           delete-branch: true
